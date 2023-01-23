@@ -1,0 +1,22 @@
+Package: neatR
+Type: Package
+Title: Neat Data for Presentation
+Version: 0.1.0
+Author: Shiva
+Maintainer: Shiva <dswithai@gmail.com>
+Description: Utilities for unambiguous, neat and legible
+    representation of data (date, time stamp, numbers, percentages and strings) 
+    for presentation of analysis , aiming for elegance and consistency.
+    The purpose of this package is to format data, that is better 
+    for presentation and any automation jobs that reports numbers.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    data.table,
+    magrittr,
+    tools
+Suggests:
+    testthat (>= 3.0.0)
+RoxygenNote: 7.2.3
+Config/testthat/edition: 3
