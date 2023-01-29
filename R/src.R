@@ -125,7 +125,7 @@ ntimestamp <- function(timestamp, include.date = TRUE, include.minutes = TRUE, i
   }
   if(include.timezone)
   {
-    tz <- format(timestamp, ' %Z')
+    tz <- toupper(format(timestamp, ' %Z'))
   } else {
     tz <- defaults
   }
@@ -136,7 +136,7 @@ ntimestamp <- function(timestamp, include.date = TRUE, include.minutes = TRUE, i
     date <- defaults
   }
   hour <- format(timestamp, '%IH')
-  am_pm <- format(timestamp, ' %p')
+  am_pm <- toupper(format(timestamp, ' %p'))
   paste0(date, hour, mins, secs, am_pm, tz)
 }
 
