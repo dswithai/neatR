@@ -2,8 +2,10 @@ Package: neatR
 Type: Package
 Title: Neat Data for Presentation
 Version: 0.1.0
-Author: Shiva
-Maintainer: Shiva <dswithai@gmail.com>
+Authors@R: c(
+    person("Shivaprakash", "Suresh",
+            role = c("aut", "cre", "cph"),
+            email = "dswithai@gmail.com"))
 Description: Utilities for unambiguous, neat and legible
     representation of data (date, time stamp, numbers, percentages and strings) 
     for presentation of analysis , aiming for elegance and consistency.

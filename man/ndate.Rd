@@ -9,7 +9,7 @@ ndate(date, include.alias = TRUE, is.month = FALSE)
 \arguments{
 \item{date}{a Date or POSIX time stamp}
 
-\item{include.alias}{a Boolean. If the alias of date to be included or not. See examples below.}
+\item{include.alias}{a Boolean. If the reference alias of date to be included or not such as Today/Yesterday/Tomorrow/Last/Coming. See examples below.}
 
 \item{is.month}{a Boolean variable representing if the date represents month. If this set to TRUE,
 the function returns 'MMMM'YY' as the output which is a neater representation of month.}
@@ -21,8 +21,11 @@ String representation of the date
 neat representation of dates
 }
 \examples{
+# Neat representation of current date
 x <- Sys.Date()
 ndate(x)
+# Neat representation of current date with reference alias.
 ndate(x, include.alias = FALSE)
+# Neat representation of current date with only month and year
 ndate(x, is.month = TRUE)
 }

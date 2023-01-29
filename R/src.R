@@ -21,11 +21,13 @@ inpar <- function(x)
 #' neat alias of the week day with reference based on current date
 #' @param date a Date or POSIX time stamp
 #' @param reference.alias a Boolean. If set to TRUE, a reference alias of week day is shown based
-#' on current date.
+#' on current date such as Today/Yesterday/Tomorrow/Last/Coming.
 #' @return week day of the date in a readable format with reference alias based on current date
 #' @examples
+#' # Get day of the week of current date without reference alias
 #' x <- Sys.Date()
-#' nday(x)
+#' nday(x, reference.alias = FALSE)
+#' # Get day of the week with reference alias
 #' nday(x, reference.alias = TRUE)
 #' @export
 
@@ -53,14 +55,17 @@ nday <- function(date, reference.alias = FALSE)
 
 #' neat representation of dates
 #' @param date a Date or POSIX time stamp
-#' @param include.alias a Boolean. If the alias of date to be included or not. See examples below.
+#' @param include.alias a Boolean. If the reference alias of date to be included or not such as Today/Yesterday/Tomorrow/Last/Coming. See examples below.
 #' @param is.month a Boolean variable representing if the date represents month. If this set to TRUE,
 #' the function returns 'MMMM'YY' as the output which is a neater representation of month.
 #' @return String representation of the date
 #' @examples
+#' # Neat representation of current date
 #' x <- Sys.Date()
 #' ndate(x)
+#' # Neat representation of current date with reference alias.
 #' ndate(x, include.alias = FALSE)
+#' # Neat representation of current date with only month and year
 #' ndate(x, is.month = TRUE)
 #' @export
 
@@ -84,19 +89,22 @@ ndate <- function(date, include.alias = TRUE, is.month = FALSE)
 
 #' neat representation of time stamp
 #' @param timestamp a POSIX time stamp
-#' @param include.date a Boolean representing if the date of time stamp to be included
-#' @param include.minutes a Boolean representing if the minutes to be included
-#' @param include.seconds a Boolean representing if the seconds to be included
+#' @param include.date a Boolean representing if the date of time stamp to be included. By default it is set to TRUE
+#' @param include.minutes a Boolean representing if the minutes to be included. By default it is set to TRUE
+#' @param include.seconds a Boolean representing if the seconds to be included. By default it is set to TRUE
 #' @param include.timezone a Boolean variable representing if the timezone of the date variable
-#' to be included.
+#' to be included. By default it is set to TRUE
 #' @return String representation of time stamp
 #' @examples
+#' # Neat representation of time stamp
 #' x <- Sys.time()
 #' ntimestamp(x)
+#' # Neat representation of time from a time stamp
+#' ntimestamp(x, include.date = FALSE, include.seconds = FALSE, include.timezone = FALSE)
 #' @export
 
-ntimestamp <- function(timestamp, include.date = TRUE, include.minutes = FALSE, include.seconds = FALSE,
-                       include.timezone = FALSE)
+ntimestamp <- function(timestamp, include.date = TRUE, include.minutes = TRUE, include.seconds = TRUE,
+                       include.timezone = TRUE)
 {
   if(!any(class(timestamp) %in% c("POSIXct", "POSIXt")))
   {
@@ -278,10 +286,11 @@ clean_space <- function(x)
 #' neat representation of string
 #' @param string a string / character
 #' @param case an optional parameter to convert the string variable to specific case.
-#' By default the case of the string is kept as it is. The available case conversions are lower, upper, title or start case.
+#' By default the case of the string is kept as it is. The available case conversions are lower, upper, title and start case.
 #' @param remove.specials an optional parameter. set to TRUE if special characters including any punctuation
 #' to be removed from the string
 #' @return White space cleaned and optionally formatted by case conversion and removal of special characters of the input string.
+#' @seealso Refer to \url{https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage} for more information about the different cases of text/string.
 #' @examples
 #' nstring('   All MOdels are wrong.   some ARE useful!!! ', case = 'title', remove.specials = TRUE)
 #' nstring("all Models are Wrong some are Useful", case = 'start', remove.specials = TRUE)

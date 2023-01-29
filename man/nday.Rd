@@ -10,7 +10,7 @@ nday(date, reference.alias = FALSE)
 \item{date}{a Date or POSIX time stamp}
 
 \item{reference.alias}{a Boolean. If set to TRUE, a reference alias of week day is shown based
-on current date.}
+on current date such as Today/Yesterday/Tomorrow/Last/Coming.}
 }
 \value{
 week day of the date in a readable format with reference alias based on current date
@@ -19,7 +19,9 @@ week day of the date in a readable format with reference alias based on current 
 neat alias of the week day with reference based on current date
 }
 \examples{
+# Get day of the week of current date without reference alias
 x <- Sys.Date()
-nday(x)
+nday(x, reference.alias = FALSE)
+# Get day of the week with reference alias
 nday(x, reference.alias = TRUE)
 }

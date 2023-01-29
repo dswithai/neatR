@@ -10,7 +10,7 @@ nstring(string, case = NULL, remove.specials = FALSE)
 \item{string}{a string / character}
 
 \item{case}{an optional parameter to convert the string variable to specific case.
-By default the case of the string is kept as it is. The available case conversions are lower, upper, title or start case.}
+By default the case of the string is kept as it is. The available case conversions are lower, upper, title and start case.}
 
 \item{remove.specials}{an optional parameter. set to TRUE if special characters including any punctuation
 to be removed from the string}
@@ -24,4 +24,7 @@ neat representation of string
 \examples{
 nstring('   All MOdels are wrong.   some ARE useful!!! ', case = 'title', remove.specials = TRUE)
 nstring("all Models are Wrong some are Useful", case = 'start', remove.specials = TRUE)
+}
+\seealso{
+Refer to \url{https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage} for more information about the different cases of text/string.
 }

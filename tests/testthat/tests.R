@@ -57,10 +57,9 @@ test_that('nstring tests', {
 })
 
 test_that('ntimestamp tests', {
-  expect_equal(ntimestamp(as.POSIXct('2022-01-01 07:15:43 PST')), 'Jan 01, 2022 07H AM')
-  expect_equal(ntimestamp(as.POSIXct('2022-01-01 07:15:43 PST'), include.date = FALSE), '07H AM')
-  expect_equal(ntimestamp(as.POSIXct('2022-01-01 07:15:43 PST'), include.minutes = TRUE), 'Jan 01, 2022 07H 15M AM')
-  expect_equal(ntimestamp(as.POSIXct('2022-01-01 07:15:43 PST'), include.minutes = TRUE, include.seconds = TRUE), 'Jan 01, 2022 07H 15M 43S AM')
+  expect_equal(ntimestamp(as.POSIXct('2022-01-01 07:15:43 PST'), include.timezone = FALSE), 'Jan 01, 2022 07H 15M 43S AM')
+  expect_equal(ntimestamp(as.POSIXct('2022-01-01 07:15:43 PST'), include.date = FALSE, include.timezone = FALSE), '07H 15M 43S AM')
+  expect_equal(ntimestamp(as.POSIXct('2022-01-01 07:15:43 PST'), include.seconds = FALSE, include.timezone = FALSE), 'Jan 01, 2022 07H 15M AM')
   expect_error(ntimestamp(1))
   expect_error(ntimestamp(0.22))
   expect_error(ntimestamp(as.Date('2022-01-01')))
