@@ -15,14 +15,18 @@ npercent(
 \arguments{
 \item{percent}{an integer or double representing percentage}
 
-\item{is.decimal}{a Boolean variable. If the percent is raw, the value to set as TRUE. See examples below.
-If the percent variable is already pre-multiplied by 100 then the value to be set as FALSE.}
+\item{is.decimal}{a Boolean variable. If the percent is raw,
+the value to set as TRUE. See examples below.
+If the percent variable is already pre-multiplied by 100
+then the value to be set as FALSE.}
 
 \item{digits}{number of digits to round-off}
 
-\item{plus.sign}{a Boolean variable. If the percent is positive then setting plus_sign = TRUE, includes an explicit + sign before the percent}
+\item{plus.sign}{a Boolean variable. If the percent is positive
+then setting plus_sign = TRUE, includes an explicit + sign before the percent}
 
-\item{factor.out}{an optional Boolean variable. If the percent exceeds |100%| then a string representing growth or drop as
+\item{factor.out}{an optional Boolean variable.
+If the percent exceeds |100%| then a string representing growth or drop as
 readable factors. See examples below.}
 }
 \value{

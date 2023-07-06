@@ -1,7 +1,7 @@
 Package: neatR
 Type: Package
 Title: Neat Data for Presentation
-Version: 0.1.1
+Version: 0.2.0
 Authors@R: c(
     person("Shivaprakash", "Suresh",
             role = c("aut", "cre", "cph"),
@@ -19,6 +19,9 @@ Imports:
     magrittr,
     tools
 Suggests:
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 RoxygenNote: 7.2.3
 Config/testthat/edition: 3
+VignetteBuilder: knitr

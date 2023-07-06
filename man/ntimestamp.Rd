@@ -6,7 +6,9 @@
 \usage{
 ntimestamp(
   timestamp,
+  display.weekday = TRUE,
   include.date = TRUE,
+  include.hours = TRUE,
   include.minutes = TRUE,
   include.seconds = TRUE,
   include.timezone = TRUE
@@ -15,14 +17,23 @@ ntimestamp(
 \arguments{
 \item{timestamp}{a POSIX time stamp}
 
-\item{include.date}{a Boolean representing if the date of time stamp to be included. By default it is set to TRUE}
-
-\item{include.minutes}{a Boolean representing if the minutes to be included. By default it is set to TRUE}
-
-\item{include.seconds}{a Boolean representing if the seconds to be included. By default it is set to TRUE}
-
-\item{include.timezone}{a Boolean variable representing if the timezone of the date variable
+\item{display.weekday}{a Boolean representing if the weekday of the timestamp
 to be included. By default it is set to TRUE}
+
+\item{include.date}{a Boolean representing if the date of time stamp
+to be included. By default it is set to TRUE.}
+
+\item{include.hours}{a Boolean representing if the hours to be included.
+By default it is set to TRUE}
+
+\item{include.minutes}{a Boolean representing if the minutes to be included.
+By default it is set to TRUE}
+
+\item{include.seconds}{a Boolean representing if the seconds to be included.
+By default it is set to TRUE}
+
+\item{include.timezone}{a Boolean variable representing if the
+timezone of the date variable to be included. By default it is set to TRUE.}
 }
 \value{
 String representation of time stamp
@@ -35,5 +46,6 @@ neat representation of time stamp
 x <- Sys.time()
 ntimestamp(x)
 # Neat representation of time from a time stamp
-ntimestamp(x, include.date = FALSE, include.seconds = FALSE, include.timezone = FALSE)
+ntimestamp(x, include.date = FALSE, include.seconds = FALSE,
+include.timezone = FALSE)
 }

@@ -4,15 +4,18 @@
 \alias{ndate}
 \title{neat representation of dates}
 \usage{
-ndate(date, include.alias = TRUE, is.month = FALSE)
+ndate(date, display.weekday = TRUE, is.month = FALSE)
 }
 \arguments{
 \item{date}{a Date or POSIX time stamp}
 
-\item{include.alias}{a Boolean. If the reference alias of date to be included or not such as Today/Yesterday/Tomorrow/Last/Coming. See examples below.}
+\item{display.weekday}{a Boolean. Whether the weekday of the date
+to be included.}
 
-\item{is.month}{a Boolean variable representing if the date represents month. If this set to TRUE,
-the function returns 'MMMM'YY' as the output which is a neater representation of month.}
+\item{is.month}{a Boolean variable representing if the date represents month.
+If this set to TRUE,
+the function returns 'MMMM'YY' as the output which is a neater
+representation of month.}
 }
 \value{
 String representation of the date
@@ -24,8 +27,8 @@ neat representation of dates
 # Neat representation of current date
 x <- Sys.Date()
 ndate(x)
-# Neat representation of current date with reference alias.
-ndate(x, include.alias = FALSE)
+# Neat representation of current date with day of week.
+ndate(x, display.weekday = FALSE)
 # Neat representation of current date with only month and year
-ndate(x, is.month = TRUE)
+ndate(x, display.weekday = FALSE, is.month = TRUE)
 }
