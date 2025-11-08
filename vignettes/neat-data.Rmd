@@ -49,33 +49,33 @@ ndate(Sys.Date() + 4)
 To just get the date without the day of week,  set `display.weekday` to `FALSE`
 
 ```{r echo = TRUE}
-ndate(Sys.Date(), display.weekday = FALSE)
+ndate(Sys.Date(), display_weekday = FALSE)
 ```
 
 When we are looking at the monthly data, abbreviating the date to mmm'yy is an 
 elegant way to show the date and often helpful for charts.
 
 ```{r echo = TRUE}
-ndate(Sys.Date(), display.weekday = FALSE, is.month = TRUE)
+ndate(Sys.Date(), display_weekday = FALSE, is_month = TRUE)
 ```
 
 To see the context of the date with respect to current date 
 (referring dates within 1 week before or after current date), 
 use the `nday` function.
 
-Day of week with context based on current date, `reference.alias` can be directly used on dates or timestamps.
+Day of week with context based on current date, `reference_alias` can be directly used on dates or timestamps.
 
 ```{r echo = TRUE}
-nday(Sys.Date(), reference.alias = FALSE)
-nday(Sys.Date(), reference.alias = TRUE)
-nday(Sys.time(), reference.alias = TRUE)
+nday(Sys.Date(), reference_alias = FALSE)
+nday(Sys.Date(), reference_alias = TRUE)
+nday(Sys.time(), reference_alias = TRUE)
 ```
 
 Below is another example with context based on current date.
 
 ```{r echo = TRUE}
 x <- seq(Sys.Date() - 10, Sys.Date() + 10, by = '1 day')
-nday(x, reference.alias = TRUE)
+nday(x, reference_alias = TRUE)
 ```
 
 ### Formatting timestamp
@@ -95,8 +95,8 @@ ndate(Sys.time())
 To extract and format only the time from timestamp, we can do the following,
 
 ```{r echo = TRUE}
-ntimestamp(Sys.time(), display.weekday = FALSE,
-  include.date = FALSE, include.timezone = FALSE)
+ntimestamp(Sys.time(), display_weekday = FALSE,
+  include_date = FALSE, include_timezone = FALSE)
 ```
 
 Note: Hours are shown based on 12H clock format with AM / PM suffix.
@@ -104,14 +104,14 @@ Note: Hours are shown based on 12H clock format with AM / PM suffix.
 Components of time can be toggled on or off based on preference.
 
 ```{r echo = TRUE}
-ntimestamp(Sys.time(), include.date = FALSE, display.weekday = FALSE,
-           include.hours = TRUE,  include.minutes = TRUE,
-           include.seconds = FALSE, include.timezone = FALSE)
+ntimestamp(Sys.time(), include_date = FALSE, display_weekday = FALSE,
+           include_hours = TRUE,  include_minutes = TRUE,
+           include_seconds = FALSE, include_timezone = FALSE)
 ```
 
-Timezone can be toggled on or off using `include.timezone` parameter.
+Timezone can be toggled on or off using `include_timezone` parameter.
 ```{r echo = TRUE}
-ntimestamp(Sys.time(), include.timezone = FALSE)
+ntimestamp(Sys.time(), include_timezone = FALSE)
 ```
 
 ### Formatting number
@@ -146,45 +146,45 @@ nnumber(123456789.123456, unit = 'Mn')
 ```
 
 Default units are, 'K' for thousand, 'Mn' for million, 'Bn' for billion,
-'Tn' for trillions. The unit labeling can be customized using `unit.labels` 
+'Tn' for trillions. The unit labeling can be customized using `unit_labels` 
 which is a list encompassing values and labels.
 
 ```{r echo = TRUE}
-nnumber(123456789.123456, unit = 'M', unit.labels = list(million = 'M'))
+nnumber(123456789.123456, unit = 'M', unit_labels = list(million = 'M'))
 ```
 
 Below example, gives customization of all units.
 
 ```{r echo = TRUE}
 x <- c(10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000)
-nnumber(x, unit.labels = 
+nnumber(x, unit_labels = 
           list(thousand = 'K', million = 'M', billion= 'B', trillion = T))
 ```
 
 Along with the formatted number, we can (optionally) add a prefix or suffix.
 
 ```{r echo = TRUE}
-nnumber(123456789.123456, unit = 'M', unit.labels = list(million = 'M'),
+nnumber(123456789.123456, unit = 'M', unit_labels = list(million = 'M'),
         prefix = '$ ')
 
-nnumber(123456789.123456, unit = 'M', unit.labels = list(million = 'M'),
+nnumber(123456789.123456, unit = 'M', unit_labels = list(million = 'M'),
         suffix = ' CAD')
 
-nnumber(123456789.123456, unit = 'M', unit.labels = list(million = 'M'),
+nnumber(123456789.123456, unit = 'M', unit_labels = list(million = 'M'),
         prefix = '$ ', suffix = ' CAD')
 
 ```
 
 Sometimes, we are interested in showing the number as it is, which can be done
-by setting `unit = ''`. `thousand.separator` parameter is useful in separating the
+by setting `unit = ''`. `thousand_separator` parameter is useful in separating the
 thousands which makes it easy to read the numbers. 
 
 ```{r echo = TRUE}
 nnumber(123456789.123456, digits = 2, unit = '',
-        thousand.separator = ',')
+        thousand_separator = ',')
 ```
 
-`thousand.separator` can take the following values `",", ".", "'", " ", "_", ""`
+`thousand_separator` can take the following values `",", ".", "'", " ", "_", ""`
 
 The parameter `unit` can take any of the following values,
 
@@ -203,7 +203,7 @@ detected and applied based on majority of the values.
 
 `Tn`: The number are displayed in trillions.
 
-If the unit labels are customized and provided via a list, for an example: `unit.labels = list(thousand = 'k')` then this string `k` to be provided for the `unit`.
+If the unit labels are customized and provided via a list, for an example: `unit_labels = list(thousand = 'k')` then this string `k` to be provided for the `unit`.
 
 ### Formatting percentages
 
@@ -211,19 +211,19 @@ Percentage data can come in two types, with or without multiplied by 100.
 For an example, 22.8% can be stored as 22.8 or 0.228
 
 ```{r echo = TRUE}
-npercent(22.8, is.decimal = FALSE)
-npercent(0.228, is.decimal = TRUE)
+npercent(22.8, is_decimal = FALSE)
+npercent(0.228, is_decimal = TRUE)
 ```
 
-By default, `is.decimal` is set as TRUE and decimal digits is set to 1.
+By default, `is_decimal` is set as TRUE and decimal digits is set to 1.
 
 It is also useful to show if the percent is a positive number by adding a prefix 
 of plus sign. This is the default behavior of the npercent function, which 
 can be set to FALSE
 
 ```{r echo = TRUE}
-npercent(0.228, plus.sign = TRUE)
-npercent(0.228, plus.sign = FALSE)
+npercent(0.228, plus_sign = TRUE)
+npercent(0.228, plus_sign = FALSE)
 ```
 
 
@@ -234,15 +234,15 @@ time A to time B), it would be easy to read this as 'nX'.
 tesla_2017 <- 20
 tesla_2023 <- 200
 g <- (tesla_2023 - tesla_2017)/tesla_2017
-npercent(g, plus.sign = TRUE)
-npercent(g, plus.sign = TRUE, factor.out = TRUE)
+npercent(g, plus_sign = TRUE)
+npercent(g, plus_sign = TRUE, factor_out = TRUE)
 ```
 
 
 ### Formatting string
 
 Formatting character vectors or string can be done with case type, options to 
-remove special characters and selecting only english characters and numbers 
+remove special characters and selecting only English characters and numbers 
 from the string. 
 
 Below are the available `case` conversions, 
@@ -262,15 +262,15 @@ capitalized and rest of the letters are in lower case).
 
 ```{r echo = TRUE}
 nstring('   All MOdels are wrong.   some ARE useful!!!  â', 
-        case = 'title', remove.specials = TRUE)
+        case = 'title', remove_specials = TRUE)
 ```
 
 To exclude any special characters and retain only numbers and english alphabets, 
-we can set `en.only` parameter to `TRUE`
+we can set `en_only` parameter to `TRUE`
 
 ```{r echo = TRUE}
 nstring('   All MOdels are wrong.   some ARE useful!!!  â  ', 
-        case = 'title', remove.specials = TRUE, en.only = TRUE)
+        case = 'title', remove_specials = TRUE, en_only = TRUE)
 ```
 
 By default, Trailing and leading white spaces are removed and

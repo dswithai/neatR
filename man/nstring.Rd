@@ -7,9 +7,9 @@
 nstring(
   string,
   case = NULL,
-  remove.specials = FALSE,
-  whitelist.specials = "",
-  en.only = FALSE
+  remove_specials = FALSE,
+  whitelist_specials = "",
+  en_only = FALSE
 )
 }
 \arguments{
@@ -19,14 +19,14 @@ nstring(
 to specific case. By default the case of the string is kept as it is.
 The available case conversions are lower, upper, title, start and initcap case.}
 
-\item{remove.specials}{an optional boolean. To remove special characters
+\item{remove_specials}{an optional boolean. To remove special characters
 including any punctuation to be removed from the string, set this to TRUE.}
 
-\item{whitelist.specials}{an optional vector of strings. If any
-special characters to be retained while remove.specials is set to TRUE.
+\item{whitelist_specials}{an optional vector of strings. If any
+special characters to be retained while remove_specials is set to TRUE.
 See examples below.}
 
-\item{en.only}{an optional parameter taking boolean values, if set to TRUE,
+\item{en_only}{an optional parameter taking boolean values, if set to TRUE,
 only english alphabets (and numbers) are kept in the string.
 Non english characters are removed.}
 }
@@ -38,9 +38,9 @@ and removal of special characters of the input string.
 neat representation of string
 }
 \examples{
-nstring('   All MOdels are wrong.   some ARE useful!!! ', case = 'title', remove.specials = TRUE)
-nstring("all Models are Wrong some are Useful", case = 'start', remove.specials = TRUE)
-nstring('variable_123!!', remove.specials = TRUE, whitelist.specials = c('_'))
+nstring('   All MOdels are wrong.   some ARE useful!!! ', case = 'title', remove_specials = TRUE)
+nstring("all Models are Wrong some are Useful", case = 'start', remove_specials = TRUE)
+nstring('variable_123!!', remove_specials = TRUE, whitelist_specials = c('_'))
 }
 \seealso{
 Refer to \url{https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage} for more information about the different cases of text/string.

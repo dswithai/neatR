@@ -4,12 +4,12 @@
 \alias{nday}
 \title{neat alias of the week day with reference based on current date}
 \usage{
-nday(date, reference.alias = FALSE)
+nday(date, reference_alias = FALSE)
 }
 \arguments{
 \item{date}{a Date or POSIX time stamp}
 
-\item{reference.alias}{a Boolean. If set to TRUE, a reference alias of week day is shown based
+\item{reference_alias}{a Boolean. If set to TRUE, a reference alias of week day is shown based
 on current date such as Today/Yesterday/Tomorrow/Last/Coming.}
 }
 \value{
@@ -21,7 +21,7 @@ neat alias of the week day with reference based on current date
 \examples{
 # Get day of the week of current date without reference alias
 x <- Sys.Date()
-nday(x, reference.alias = FALSE)
+nday(x, reference_alias = FALSE)
 # Get day of the week with reference alias
-nday(x, reference.alias = TRUE)
+nday(x, reference_alias = TRUE)
 }

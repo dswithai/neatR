@@ -52,9 +52,9 @@ int_singleton_check <- function(x)
 #' Check for singletons of string
 #' @noRd
 
-str_singleton_check <- function(x, is.nullable = FALSE)
+str_singleton_check <- function(x, is_nullable = FALSE)
 {
-  na_chk <- ifelse(is.nullable, is.null(x), FALSE)
+  na_chk <- ifelse(is_nullable, is.null(x), FALSE)
   chk <- any(na_chk, (is.character(x) && NROW(x) == 1))
   if(!chk)
   {
@@ -110,23 +110,23 @@ inpar <- function(x)
 
 #' neat alias of the week day with reference based on current date
 #' @param date a Date or POSIX time stamp
-#' @param reference.alias a Boolean. If set to TRUE, a reference alias of week day is shown based
+#' @param reference_alias a Boolean. If set to TRUE, a reference alias of week day is shown based
 #' on current date such as Today/Yesterday/Tomorrow/Last/Coming.
 #' @return week day of the date in a readable format with reference alias based on current date
 #' @examples
 #' # Get day of the week of current date without reference alias
 #' x <- Sys.Date()
-#' nday(x, reference.alias = FALSE)
+#' nday(x, reference_alias = FALSE)
 #' # Get day of the week with reference alias
-#' nday(x, reference.alias = TRUE)
+#' nday(x, reference_alias = TRUE)
 #' @export
 
-nday <- function(date, reference.alias = FALSE)
+nday <- function(date, reference_alias = FALSE)
 {
   date_check(date)
-  bool_singleton_check(reference.alias)
+  bool_singleton_check(reference_alias)
   out <- format(date, '%a')
-  if(reference.alias)
+  if(reference_alias)
   {
     today <- Sys.Date()
     day_delta <- today - as.Date(date)
@@ -146,9 +146,9 @@ nday <- function(date, reference.alias = FALSE)
 
 #' neat representation of dates
 #' @param date a Date or POSIX time stamp
-#' @param display.weekday a Boolean. Whether the weekday of the date
+#' @param display_weekday a Boolean. Whether the weekday of the date
 #' to be included.
-#' @param is.month a Boolean variable representing if the date represents month.
+#' @param is_month a Boolean variable representing if the date represents month.
 #' If this set to TRUE,
 #' the function returns 'MMMM'YY' as the output which is a neater
 #' representation of month.
@@ -158,23 +158,23 @@ nday <- function(date, reference.alias = FALSE)
 #' x <- Sys.Date()
 #' ndate(x)
 #' # Neat representation of current date with day of week.
-#' ndate(x, display.weekday = FALSE)
+#' ndate(x, display_weekday = FALSE)
 #' # Neat representation of current date with only month and year
-#' ndate(x, display.weekday = FALSE, is.month = TRUE)
+#' ndate(x, display_weekday = FALSE, is_month = TRUE)
 #' @export
 
-ndate <- function(date, display.weekday = TRUE, is.month = FALSE)
+ndate <- function(date, display_weekday = TRUE, is_month = FALSE)
 {
   date_check(date)
-  bool_singleton_check(display.weekday)
-  bool_singleton_check(is.month)
-  if(is.month)
+  bool_singleton_check(display_weekday)
+  bool_singleton_check(is_month)
+  if(is_month)
   {
     out <- format(date, "%b'%y")
   } else {
-  if(display.weekday)
+  if(display_weekday)
   {
-    wd <- inpar(nday(date, reference.alias = FALSE))
+    wd <- inpar(nday(date, reference_alias = FALSE))
   } else {
     wd <- rep('', length(date))
   }
@@ -185,17 +185,17 @@ ndate <- function(date, display.weekday = TRUE, is.month = FALSE)
 
 #' neat representation of time stamp
 #' @param timestamp a POSIX time stamp
-#' @param include.date a Boolean representing if the date of time stamp
+#' @param include_date a Boolean representing if the date of time stamp
 #' to be included. By default it is set to TRUE.
-#' @param display.weekday a Boolean representing if the weekday of the timestamp
+#' @param display_weekday a Boolean representing if the weekday of the timestamp
 #' to be included. By default it is set to TRUE
-#' @param include.hours a Boolean representing if the hours to be included.
+#' @param include_hours a Boolean representing if the hours to be included.
 #' By default it is set to TRUE
-#' @param include.minutes a Boolean representing if the minutes to be included.
+#' @param include_minutes a Boolean representing if the minutes to be included.
 #' By default it is set to TRUE
-#' @param include.seconds a Boolean representing if the seconds to be included.
+#' @param include_seconds a Boolean representing if the seconds to be included.
 #' By default it is set to TRUE
-#' @param include.timezone a Boolean variable representing if the
+#' @param include_timezone a Boolean variable representing if the
 #' timezone of the date variable to be included. By default it is set to TRUE.
 #' @return String representation of time stamp
 #' @examples
@@ -203,49 +203,49 @@ ndate <- function(date, display.weekday = TRUE, is.month = FALSE)
 #' x <- Sys.time()
 #' ntimestamp(x)
 #' # Neat representation of time from a time stamp
-#' ntimestamp(x, include.date = FALSE, include.seconds = FALSE,
-#' include.timezone = FALSE)
+#' ntimestamp(x, include_date = FALSE, include_seconds = FALSE,
+#' include_timezone = FALSE)
 #' @export
 
-ntimestamp <- function(timestamp, display.weekday = TRUE, include.date = TRUE,
-    include.hours = TRUE, include.minutes = TRUE, include.seconds = TRUE,
-    include.timezone = TRUE)
+ntimestamp <- function(timestamp, display_weekday = TRUE, include_date = TRUE,
+    include_hours = TRUE, include_minutes = TRUE, include_seconds = TRUE,
+    include_timezone = TRUE)
 {
   timestamp_check(timestamp)
-  bool_singleton_check(display.weekday)
-  bool_singleton_check(include.date)
-  bool_singleton_check(include.hours)
-  bool_singleton_check(include.minutes)
-  bool_singleton_check(include.seconds)
-  bool_singleton_check(include.timezone)
+  bool_singleton_check(display_weekday)
+  bool_singleton_check(include_date)
+  bool_singleton_check(include_hours)
+  bool_singleton_check(include_minutes)
+  bool_singleton_check(include_seconds)
+  bool_singleton_check(include_timezone)
 
   defaults <- rep('', length(timestamp))
 
-  if(include.hours)
+  if(include_hours)
   {
     hour <- format(timestamp, '%IH')
   } else {
     hour <- defaults
   }
-  if(include.minutes)
+  if(include_minutes)
   {
     mins <- format(timestamp, ' %MM')
   } else {
     mins <- defaults
   }
-  if(include.seconds)
+  if(include_seconds)
   {
     secs <- format(timestamp, ' %SS')
   } else {
     secs <- defaults
   }
-  if(include.timezone)
+  if(include_timezone)
   {
     tz <- toupper(format(timestamp, ' %Z'))
   } else {
     tz <- defaults
   }
-  if(include.date)
+  if(include_date)
   {
     date <- format(timestamp, '%b %d, %Y ')
   } else {
@@ -254,8 +254,8 @@ ntimestamp <- function(timestamp, display.weekday = TRUE, include.date = TRUE,
 
   am_pm <- toupper(format(timestamp, ' %p'))
   out <- paste0(date, hour, mins, secs, am_pm, tz)
-  if (display.weekday) {
-    wd <- inpar(nday(timestamp, reference.alias = FALSE))
+  if (display_weekday) {
+    wd <- inpar(nday(timestamp, reference_alias = FALSE))
     out <- paste0(out, wd)
   }
   return(out)
@@ -273,7 +273,7 @@ sandwich <- function(x, prefix = "", suffix = "")
 #' Add comma or dot separation of thousands to chunk large numbers
 #' @noRd
 
-chunk_digits <- function(x, thousand.separator = ",")
+chunk_digits <- function(x, thousand_separator = ",")
 {
   if(all(x == round(x, 1)))
   {
@@ -281,9 +281,9 @@ chunk_digits <- function(x, thousand.separator = ",")
   } else {
     nsmall <- 1
   }
-  decimal.separator <- ifelse(thousand.separator == ".", ",", ".")
-  prettyNum(round(x, 1), nsmall = nsmall, big.mark = thousand.separator,
-            decimal.mark = decimal.separator, scientific = FALSE)
+  decimal_separator <- ifelse(thousand_separator == ".", ",", ".")
+  prettyNum(round(x, 1), nsmall = nsmall, big.mark = thousand_separator,
+            decimal.mark = decimal_separator, scientific = FALSE)
 }
 
 #' Check for empty string
@@ -301,17 +301,17 @@ is_empty <- function(x)
 #' Coalesce for null or na values in a vector
 #' @noRd
 
-coalesce <- function(x, replaceby)
+coalesce <- function(x, replace_by)
 {
   if(is.null(x))
     {
-      x <- replaceby
+      x <- replace_by
     } else {
-      x[is_na(x)] <- replaceby
+      x[is_na(x)] <- replace_by
   }
   if(is.character(x))
   {
-    x[is_empty(x)] <- replaceby
+    x[is_empty(x)] <- replace_by
   }
   return(x)
 }
@@ -333,13 +333,13 @@ num_format <- function(n, ul, digits)
 #' @param number an integer or double.
 #' @param digits number of digits to round-off. Default value is 1.
 #' @param unit unit to which the number to be converted. See examples below.
-#' @param unit.labels a vector of strings (optional) that gives the unit label for
+#' @param unit_labels a vector of strings (optional) that gives the unit label for
 #' thousand, million, billion and trillion.
 #' @param prefix a string (optional) that can be prepended to the formatted
 #' number.
 #' @param suffix a string (optional) that can be appended at the end of the
 #' formatted number.
-#' @param thousand.separator a character (optional) that can be used to chunk thousands
+#' @param thousand_separator a character (optional) that can be used to chunk thousands
 #' to display large numbers. Default is set as comma, dot, comma or underscore
 #' can be used.
 #' @return String representation of numbers with suffix denoting K for thousands,
@@ -353,9 +353,9 @@ num_format <- function(n, ul, digits)
 #' @export
 
 nnumber <- function(number, digits = 1, unit = 'custom',
-  unit.labels = list(thousand = 'K', million = 'Mn',
+  unit_labels = list(thousand = 'K', million = 'Mn',
                   billion = 'Bn',trillion = 'Tn'),
-  prefix = '', suffix = '', thousand.separator = ",")
+  prefix = '', suffix = '', thousand_separator = ",")
 {
   if(!is.numeric(number)) {
     stop('number must be a numeric type variable (vector).
@@ -363,20 +363,20 @@ nnumber <- function(number, digits = 1, unit = 'custom',
   }
   int_singleton_check(digits)
   str_singleton_check(unit)
-  lst_str_check(unit.labels)
+  lst_str_check(unit_labels)
   str_singleton_check(prefix)
   str_singleton_check(suffix)
 
-  if(!any(thousand.separator %in% c(",", ".", "_", "'", " ")))
+  if(!any(thousand_separator %in% c(",", ".", "_", "'", " ")))
   {
-    stop('thousand.separator to distinguish thousands can take any of the below values
+    stop('thousand_separator to distinguish thousands can take any of the below values
          `.`, `,`, `_` Default is set as comma`,`')
   }
   ul <- unname(unlist(c('',
-                 coalesce(unit.labels[['thousand']], 'K'),
-                 coalesce(unit.labels[['million']], 'Mn'),
-                 coalesce(unit.labels[['billion']], 'Bn'),
-                 coalesce(unit.labels[['trillion']], 'Tn'))))
+                 coalesce(unit_labels[['thousand']], 'K'),
+                 coalesce(unit_labels[['million']], 'Mn'),
+                 coalesce(unit_labels[['billion']], 'Bn'),
+                 coalesce(unit_labels[['trillion']], 'Tn'))))
 
   unit_factor <- c(1,1e-3,1e-6,1e-9,1e-12)
 
@@ -395,10 +395,10 @@ nnumber <- function(number, digits = 1, unit = 'custom',
     {
       stop("`unit` parameter must be one of the following,
          '', 'K', 'Mn', 'Bn', 'Tn' or 'auto' or 'custom' or a custom specified
-           value in the `unit.labels` list.")
+           value in the `unit_labels` list.")
     }
     ytemp <- chunk_digits(round(number * unit_factor[unit], digits),
-                          thousand.separator)
+                          thousand_separator)
     ytemp <- ifelse(ytemp == '0', '<0.1', ytemp)
     y <- paste0(ytemp, ' ', fmt)
   }
@@ -408,9 +408,9 @@ nnumber <- function(number, digits = 1, unit = 'custom',
 #' Pretty printing of percentages
 #' @noRd
 
-pct <- function(x, is.decimal = TRUE)
+pct <- function(x, is_decimal = TRUE)
 {
-  if(is.decimal)
+  if(is_decimal)
   {
     x <- x * 100
   }
@@ -421,9 +421,9 @@ pct <- function(x, is.decimal = TRUE)
 #' Add + or - sign before the number
 #' @noRd
 
-add_sign <- function(x, plus.sign = TRUE)
+add_sign <- function(x, plus_sign = TRUE)
 {
-  ifelse(plus.sign & x > 0, paste0('+', x), x)
+  ifelse(plus_sign & x > 0, paste0('+', x), x)
 }
 
 #' Add percentage symbol at the end of the number
@@ -462,40 +462,40 @@ nbps <- function(x) {
 
 #' neat representation of percentage
 #' @param percent an integer or double representing percentage
-#' @param is.decimal a Boolean variable. If the percent is raw,
+#' @param is_decimal a Boolean variable. If the percent is raw,
 #' the value to set as TRUE. See examples below.
 #' If the percent variable is already pre-multiplied by 100
 #' then the value to be set as FALSE.
 #' @param digits number of digits to round-off
-#' @param factor.out an optional Boolean variable.
+#' @param factor_out an optional Boolean variable.
 #' If the percent exceeds |100%| then a string representing growth or drop as
 #' readable factors. See examples below.
-#' @param plus.sign a Boolean variable. If the percent is positive
+#' @param plus_sign a Boolean variable. If the percent is positive
 #' then setting plus_sign = TRUE, includes an explicit + sign before the percent
 #' @return String representation of the percentages.
 #' @examples
 #' # Formatting 22.3%
-#' npercent(0.223, is.decimal = TRUE, digits = 1)
-#' npercent(22.3, is.decimal = FALSE, digits = 1)
+#' npercent(0.223, is_decimal = TRUE, digits = 1)
+#' npercent(22.3, is_decimal = FALSE, digits = 1)
 #' # Formatting percentages with growth factors
-#' npercent(c(-4.01, 2.56), is.decimal = TRUE, factor.out = TRUE)
+#' npercent(c(-4.01, 2.56), is_decimal = TRUE, factor_out = TRUE)
 #' @export
 
 
-npercent <- function(percent, is.decimal = TRUE, digits = 1,
-  plus.sign = TRUE, factor.out = FALSE, basis_points_out = FALSE)
+npercent <- function(percent, is_decimal = TRUE, digits = 1,
+  plus_sign = TRUE, factor_out = FALSE, basis_points_out = FALSE)
 {
   if(!is.numeric(percent)) {
     stop('percent must be of numeric type representing a percentage.
          Try as.numeric(x) to convert to numeric type')
   }
-  bool_singleton_check(is.decimal)
+  bool_singleton_check(is_decimal)
   int_singleton_check(digits)
-  bool_singleton_check(plus.sign)
-  bool_singleton_check(factor.out)
+  bool_singleton_check(plus_sign)
+  bool_singleton_check(factor_out)
 
   out <- percent %>%
-    pct(is.decimal)
+    pct(is_decimal)
 
   if(basis_points_out)
   {
@@ -504,7 +504,7 @@ npercent <- function(percent, is.decimal = TRUE, digits = 1,
     bp <- rep('', length(percent))
   }
 
-  if(factor.out)
+  if(factor_out)
   {
     gtemp <- out / 100
     gtemp_abs <- abs(gtemp)
@@ -517,7 +517,7 @@ npercent <- function(percent, is.decimal = TRUE, digits = 1,
 
   out <- paste0(out %>%
     nround(digits = digits) %>%
-    add_sign(plus.sign = plus.sign) %>%
+    add_sign(plus_sign = plus_sign) %>%
     add_psym(), gfactor, bp)
   return(out)
 }
@@ -598,9 +598,9 @@ convert_case <- function(x, case)
 #' Removing punctuation and special characters from a string
 #' @noRd
 
-clean_text <- function(x, whitelist.specials = "")
+clean_text <- function(x, whitelist_specials = "")
 {
-  ptmp <- paste0(whitelist.specials, collapse = "|")
+  ptmp <- paste0(whitelist_specials, collapse = "|")
   pattern <- paste0("[^", ptmp, "[:alnum:][:space:]]")
   gsub(pattern = pattern,"", x)
 }
@@ -637,26 +637,26 @@ strip_non_english <- function(x)
 #' @param case an optional parameter to convert the string variable
 #' to specific case. By default the case of the string is kept as it is.
 #' The available case conversions are lower, upper, title, start and initcap case.
-#' @param remove.specials an optional boolean. To remove special characters
+#' @param remove_specials an optional boolean. To remove special characters
 #' including any punctuation to be removed from the string, set this to TRUE.
-#' @param whitelist.specials an optional vector of strings. If any
-#' special characters to be retained while remove.specials is set to TRUE.
+#' @param whitelist_specials an optional vector of strings. If any
+#' special characters to be retained while remove_specials is set to TRUE.
 #' See examples below.
-#' @param en.only an optional parameter taking boolean values, if set to TRUE,
+#' @param en_only an optional parameter taking boolean values, if set to TRUE,
 #' only english alphabets (and numbers) are kept in the string.
 #' Non english characters are removed.
 #' @return White space cleaned and optionally formatted by case conversion
 #' and removal of special characters of the input string.
 #' @seealso Refer to \url{https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage} for more information about the different cases of text/string.
 #' @examples
-#' nstring('   All MOdels are wrong.   some ARE useful!!! ', case = 'title', remove.specials = TRUE)
-#' nstring("all Models are Wrong some are Useful", case = 'start', remove.specials = TRUE)
-#' nstring('variable_123!!', remove.specials = TRUE, whitelist.specials = c('_'))
+#' nstring('   All MOdels are wrong.   some ARE useful!!! ', case = 'title', remove_specials = TRUE)
+#' nstring("all Models are Wrong some are Useful", case = 'start', remove_specials = TRUE)
+#' nstring('variable_123!!', remove_specials = TRUE, whitelist_specials = c('_'))
 #' @export
 
 
-nstring <- function(string, case = NULL, remove.specials = FALSE,
-  whitelist.specials = '', en.only = FALSE)
+nstring <- function(string, case = NULL, remove_specials = FALSE,
+  whitelist_specials = '', en_only = FALSE)
 {
   if(!is.character(string))
   {
@@ -664,10 +664,10 @@ nstring <- function(string, case = NULL, remove.specials = FALSE,
          Try as.character(x) to convert to character type variable')
   }
 
-  str_singleton_check(case, is.nullable = TRUE)
-  bool_singleton_check(remove.specials)
-  is.character(whitelist.specials)
-  bool_singleton_check(en.only)
+  str_singleton_check(case, is_nullable = TRUE)
+  bool_singleton_check(remove_specials)
+  is.character(whitelist_specials)
+  bool_singleton_check(en_only)
 
   if(!is.null(case) && !any(case %in% c('lower', 'upper', 'title', 'start', 'initcap')))
   {
@@ -677,11 +677,11 @@ nstring <- function(string, case = NULL, remove.specials = FALSE,
   {
     string <- convert_case(string, case)
   }
-  if(remove.specials)
+  if(remove_specials)
   {
-    string <- clean_text(string, whitelist.specials = whitelist.specials)
+    string <- clean_text(string, whitelist_specials = whitelist_specials)
   }
-  if(en.only)
+  if(en_only)
   {
     string <- strip_non_english(string)
   }

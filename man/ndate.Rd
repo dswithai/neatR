@@ -4,15 +4,15 @@
 \alias{ndate}
 \title{neat representation of dates}
 \usage{
-ndate(date, display.weekday = TRUE, is.month = FALSE)
+ndate(date, display_weekday = TRUE, is_month = FALSE)
 }
 \arguments{
 \item{date}{a Date or POSIX time stamp}
 
-\item{display.weekday}{a Boolean. Whether the weekday of the date
+\item{display_weekday}{a Boolean. Whether the weekday of the date
 to be included.}
 
-\item{is.month}{a Boolean variable representing if the date represents month.
+\item{is_month}{a Boolean variable representing if the date represents month.
 If this set to TRUE,
 the function returns 'MMMM'YY' as the output which is a neater
 representation of month.}
@@ -28,7 +28,7 @@ neat representation of dates
 x <- Sys.Date()
 ndate(x)
 # Neat representation of current date with day of week.
-ndate(x, display.weekday = FALSE)
+ndate(x, display_weekday = FALSE)
 # Neat representation of current date with only month and year
-ndate(x, display.weekday = FALSE, is.month = TRUE)
+ndate(x, display_weekday = FALSE, is_month = TRUE)
 }

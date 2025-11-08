@@ -6,27 +6,29 @@
 \usage{
 npercent(
   percent,
-  is.decimal = TRUE,
+  is_decimal = TRUE,
   digits = 1,
-  plus.sign = TRUE,
-  factor.out = FALSE,
+  plus_sign = TRUE,
+  factor_out = FALSE,
   basis_points_out = FALSE
 )
 }
 \arguments{
 \item{percent}{an integer or double representing percentage}
 
-\item{is.decimal}{a Boolean variable. If the percent is raw,
+\item{is_decimal}{a Boolean variable. If the percent is raw,
 the value to set as TRUE. See examples below.
 If the percent variable is already pre-multiplied by 100
 then the value to be set as FALSE.}
 
 \item{digits}{number of digits to round-off}
 
-\item{plus.sign}{a Boolean variable. If the percent is positive
+\item{plus_sign}{a Boolean variable. If the percent is positive
 then setting plus_sign = TRUE, includes an explicit + sign before the percent}
 
-\item{factor.out}{an optional Boolean variable.
+\item{factor_out}{an optional Boolean variable.}
+
+\item{basis_points_out}{an optional parameter to get the percentage as basis points
 If the percent exceeds |100%| then a string representing growth or drop as
 readable factors. See examples below.}
 }
@@ -38,8 +40,8 @@ neat representation of percentage
 }
 \examples{
 # Formatting 22.3\%
-npercent(0.223, is.decimal = TRUE, digits = 1)
-npercent(22.3, is.decimal = FALSE, digits = 1)
+npercent(0.223, is_decimal = TRUE, digits = 1)
+npercent(22.3, is_decimal = FALSE, digits = 1)
 # Formatting percentages with growth factors
-npercent(c(-4.01, 2.56), is.decimal = TRUE, factor.out = TRUE)
+npercent(c(-4.01, 2.56), is_decimal = TRUE, factor_out = TRUE)
 }

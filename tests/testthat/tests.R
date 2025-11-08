@@ -10,7 +10,7 @@ test_that('ndate tests', {
 })
 
 test_that('nday tests', {
-  expect_equal(nday(as.Date('2022-01-01'), reference.alias = TRUE), 'Sat')
+  expect_equal(nday(as.Date('2022-01-01'), reference_alias = TRUE), 'Sat')
   expect_equal(nday(as.POSIXct('2022-01-01 07:00:00 PST')), 'Sat')
   expect_error(nday(1))
   expect_error(nday(1.2))
@@ -26,14 +26,14 @@ test_that('nnumber tests', {
   expect_equal(nnumber(12e6, unit = 'custom', digits = 0), "12 Mn")
   expect_equal(nnumber(12e6, unit = 'Mn'), "12 Mn")
   expect_equal(nnumber(12e6, unit = 'M',
-                       unit.labels = list(million = 'M')), "12 M")
+                       unit_labels = list(million = 'M')), "12 M")
   expect_equal(nnumber(12e6, unit = 'Mn', prefix = "$"), "$12 Mn")
   expect_equal(nnumber(12e6, unit = 'Mn', prefix = "$",
                        suffix = " CAD"), "$12 Mn CAD")
   expect_equal(nnumber(12e6, unit = '', prefix = "$",
-                       thousand.separator = ","), "$12,000,000")
+                       thousand_separator = ","), "$12,000,000")
   expect_equal(nnumber(12e6, unit = '', prefix = "$",
-                       thousand.separator = "."), "$12.000.000")
+                       thousand_separator = "."), "$12.000.000")
   expect_error(nnumber(as.Date('2022-01-01')))
   expect_error(nnumber(as.POSIXct('2022-01-01 07:00:00 PST')))
   expect_error(nnumber('a'))
@@ -43,12 +43,12 @@ test_that('nnumber tests', {
 
 test_that('npercent tests', {
   expect_equal(npercent(0.22), '+22.0%')
-  expect_equal(npercent(22, is.decimal = FALSE), '+22.0%')
-  expect_equal(npercent(22.345, is.decimal = FALSE, digits = 1), '+22.3%')
-  expect_equal(npercent(22.345, is.decimal = FALSE, digits = 1,
-    plus.sign = FALSE), '22.3%')
-  expect_equal(npercent(223.345, is.decimal = FALSE, digits = 1,
-    plus.sign = FALSE, factor.out = TRUE),
+  expect_equal(npercent(22, is_decimal = FALSE), '+22.0%')
+  expect_equal(npercent(22.345, is_decimal = FALSE, digits = 1), '+22.3%')
+  expect_equal(npercent(22.345, is_decimal = FALSE, digits = 1,
+    plus_sign = FALSE), '22.3%')
+  expect_equal(npercent(223.345, is_decimal = FALSE, digits = 1,
+    plus_sign = FALSE, factor_out = TRUE),
                '223.3% (2.2x Growth)')
   expect_error(npercent('a'))
   expect_error(npercent(as.Date('2022-01-01')))
@@ -66,8 +66,8 @@ test_that('nstring tests', {
   expect_equal(nstring('  abcDEF are alphabets!!    ', case = 'title'),
     'Abcdef are Alphabets!!')
   expect_equal(nstring('  abcDEF are alphabets!!    ',
-    case = 'start', remove.specials = TRUE), 'Abcdef Are Alphabets')
-  expect_equal(nstring('all is well âÂ', case = 'start', en.only = TRUE),
+    case = 'start', remove_specials = TRUE), 'Abcdef Are Alphabets')
+  expect_equal(nstring('all is well âÂ', case = 'start', en_only = TRUE),
                'All Is Well')
   expect_error(nstring(1))
   expect_error(nstring(0.22))
@@ -78,11 +78,11 @@ test_that('nstring tests', {
 
 test_that('ntimestamp tests', {
   expect_equal(ntimestamp(as.POSIXct('2022-01-01 07:15:43 PST'),
-    include.timezone = FALSE), 'Jan 01, 2022 07H 15M 43S AM (Sat)')
+    include_timezone = FALSE), 'Jan 01, 2022 07H 15M 43S AM (Sat)')
   expect_equal(ntimestamp(as.POSIXct('2022-01-01 07:15:43 PST'),
-    include.date = FALSE, include.timezone = FALSE), '07H 15M 43S AM (Sat)')
+    include_date = FALSE, include_timezone = FALSE), '07H 15M 43S AM (Sat)')
   expect_equal(ntimestamp(as.POSIXct('2022-01-01 07:15:43 PST'),
-    include.seconds = FALSE, include.timezone = FALSE),
+    include_seconds = FALSE, include_timezone = FALSE),
     'Jan 01, 2022 07H 15M AM (Sat)')
   expect_error(ntimestamp(1))
   expect_error(ntimestamp(0.22))

@@ -8,10 +8,10 @@ nnumber(
   number,
   digits = 1,
   unit = "custom",
-  unit.labels = list(thousand = "K", million = "Mn", billion = "Bn", trillion = "Tn"),
+  unit_labels = list(thousand = "K", million = "Mn", billion = "Bn", trillion = "Tn"),
   prefix = "",
   suffix = "",
-  thousand.separator = ","
+  thousand_separator = ","
 )
 }
 \arguments{
@@ -21,7 +21,7 @@ nnumber(
 
 \item{unit}{unit to which the number to be converted. See examples below.}
 
-\item{unit.labels}{a vector of strings (optional) that gives the unit label for
+\item{unit_labels}{a vector of strings (optional) that gives the unit label for
 thousand, million, billion and trillion.}
 
 \item{prefix}{a string (optional) that can be prepended to the formatted
@@ -30,7 +30,7 @@ number.}
 \item{suffix}{a string (optional) that can be appended at the end of the
 formatted number.}
 
-\item{thousand.separator}{a character (optional) that can be used to chunk thousands
+\item{thousand_separator}{a character (optional) that can be used to chunk thousands
 to display large numbers. Default is set as comma, dot, comma or underscore
 can be used.}
 }
