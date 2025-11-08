@@ -468,6 +468,7 @@ nbps <- function(x) {
 #' then the value to be set as FALSE.
 #' @param digits number of digits to round-off
 #' @param factor_out an optional Boolean variable.
+#' @param basis_points_out an optional parameter to get the percentage as basis points
 #' If the percent exceeds |100%| then a string representing growth or drop as
 #' readable factors. See examples below.
 #' @param plus_sign a Boolean variable. If the percent is positive
