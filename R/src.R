@@ -1,5 +1,6 @@
 #' Check date type
 #' @noRd
+
 date_check <- function(date)
 {
   chk <- any(class(date) %in% c("POSIXct", "POSIXt", "Date"))
@@ -99,6 +100,7 @@ lst_str_check <- function(x)
     stop(e)
   }
 }
+
 #' Put a string within parenthesis
 #' @noRd
 
@@ -450,10 +452,16 @@ num_sign <- function(x)
   ifelse(x >= 0, "+", "-")
 }
 
+#' Growth label based on the sign of the value
+#' @noRd
+
 sign_label <- function(x)
 {
-  ifelse(x >= 0, "Growth", "Drop")
+  ifelse(x == 0, "Flat", ifelse(x > 0, "Growth", "Drop"))
 }
+
+#' Basis point calculation
+#' @noRd
 
 nbps <- function(x) {
   paste0(ifelse(x >= 0, "+", ""), x * 10000, " bps")
@@ -525,6 +533,7 @@ npercent <- function(percent, is_decimal = TRUE, digits = 1,
 
 #' convert string to title case
 #' @noRd
+
 totitle <- function(x)
 {
   toTitleCase(tolower(x))
@@ -540,6 +549,7 @@ getnth <- function(l, n)
 
 #' convert string to start case
 #' @noRd
+
 tostartTmp <- function(x)
 {
   x <- tolower(x)
