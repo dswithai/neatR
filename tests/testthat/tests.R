@@ -49,7 +49,7 @@ test_that('npercent tests', {
     plus.sign = FALSE), '22.3%')
   expect_equal(npercent(223.345, is.decimal = FALSE, digits = 1,
     plus.sign = FALSE, factor.out = TRUE),
-               '223.3% (2.2x growth)')
+               '223.3% (2.2x Growth)')
   expect_error(npercent('a'))
   expect_error(npercent(as.Date('2022-01-01')))
   expect_error(npercent(as.POSIXct('2022-01-01 07:00:00 PST')))

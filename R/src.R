@@ -442,6 +442,23 @@ nround <- function(x, digits = 1)
   trimws(format(round(x, digits = digits), nsmall = digits))
 }
 
+#' Show percentage in basis points
+#' @noRd
+
+num_sign <- function(x)
+{
+  ifelse(x >= 0, "+", "-")
+}
+
+sign_label <- function(x)
+{
+  ifelse(x >= 0, "Growth", "Drop")
+}
+
+nbps <- function(x) {
+  paste0(ifelse(x >= 0, "+", ""), x * 10000, " bps")
+}
+
 
 #' neat representation of percentage
 #' @param percent an integer or double representing percentage
@@ -466,7 +483,7 @@ nround <- function(x, digits = 1)
 
 
 npercent <- function(percent, is.decimal = TRUE, digits = 1,
-  plus.sign = TRUE, factor.out = FALSE)
+  plus.sign = TRUE, factor.out = FALSE, basis_points_out = FALSE)
 {
   if(!is.numeric(percent)) {
     stop('percent must be of numeric type representing a percentage.
@@ -480,12 +497,20 @@ npercent <- function(percent, is.decimal = TRUE, digits = 1,
   out <- percent %>%
     pct(is.decimal)
 
+  if(basis_points_out)
+  {
+    bp <- inpar(nbps(percent))
+  } else {
+    bp <- rep('', length(percent))
+  }
+
   if(factor.out)
   {
-    gtemp <- round(out/100,1)
+    gtemp <- out / 100
     gtemp_abs <- abs(gtemp)
-    gfactor <- ifelse(gtemp >= 1, inpar(paste0(gtemp_abs, 'x growth')),
-                  ifelse(gtemp <= -1, inpar(paste0(gtemp_abs, 'x drop')), ''))
+    gfactor <- ifelse(gtemp >= 1, inpar(paste0(round(gtemp_abs,1), 'x Growth')),
+                  ifelse(gtemp <= -1, inpar(paste0(round(gtemp_abs,1), 'x Drop')),
+                         inpar(sign_label(gtemp))))
   } else {
     gfactor <- rep('', length(percent))
   }
@@ -493,8 +518,7 @@ npercent <- function(percent, is.decimal = TRUE, digits = 1,
   out <- paste0(out %>%
     nround(digits = digits) %>%
     add_sign(plus.sign = plus.sign) %>%
-    add_psym(), gfactor)
-
+    add_psym(), gfactor, bp)
   return(out)
 }
 

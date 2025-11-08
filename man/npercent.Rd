@@ -9,7 +9,8 @@ npercent(
   is.decimal = TRUE,
   digits = 1,
   plus.sign = TRUE,
-  factor.out = FALSE
+  factor.out = FALSE,
+  basis_points_out = FALSE
 )
 }
 \arguments{
