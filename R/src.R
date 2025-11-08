@@ -488,6 +488,8 @@ nbps <- function(x) {
 #' npercent(22.3, is_decimal = FALSE, digits = 1)
 #' # Formatting percentages with growth factors
 #' npercent(c(-4.01, 2.56), is_decimal = TRUE, factor_out = TRUE)
+#' # Formatting percentages as basis points
+#' npercent(c(-1, -0.5, -0.1, -0.01, 0, 0.01, 0.1, 0.5, 1), is_decimal = TRUE, basis_points_out = TRUE)
 #' @export
 
 
