@@ -254,7 +254,7 @@ ntimestamp <- function(timestamp, display_weekday = TRUE, include_date = TRUE,
     date <- defaults
   }
 
-  am_pm <- toupper(format(timestamp, ' %p'))
+  am_pm <- gsub("\\.", "", toupper(format(timestamp, ' %p')))
   out <- paste0(date, hour, mins, secs, am_pm, tz)
   if (display_weekday) {
     wd <- inpar(nday(timestamp, reference_alias = FALSE))
